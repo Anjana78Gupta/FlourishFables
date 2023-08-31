@@ -1,0 +1,146 @@
+<% layout('/layouts/boilerplate') %>
+    <h1 class="text-center">Welcome Back "<%= currentUser.username %>"!!
+    </h1>
+    <div class="row mb-3 mt-4">
+        <div class="col-4">
+            <h3 class="text-center">Your Blogs:</h3>
+            <ul>
+                <% for(let blog of blogs){%>
+                    <% if(blog.author._id.equals(currentUser._id)){ %>
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="">
+                                    <img src="<%= blog.logo[0].url  %>" class="img-fluid " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h3 class="card-title">
+                                            <a href="/blogs/<%= blog._id%>">
+                                                <%= blog.title %>
+                                            </a>
+                                        </h3>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                                            <%= blog.shortdescription %>
+                                        </h6>
+                                        <h6>Published by: <b>
+                                                <%= blog.author.username %>
+                                            </b></h6>
+                                        <% if(blog.likes.length) {%>
+                                            <h6>Likes: <b>
+                                                    <%= blog.likes.length %>
+                                                </b></h6>
+                                            <% } %>
+                                                <% if(blog.likes.length) {%>
+                                                    <h6>Dislikes:
+                                                        <b>
+                                                            <%= blog.dislikes.length %>
+                                                        </b>
+                                                    </h6>
+                                                    <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+
+                            <% } %>
+
+            </ul>
+        </div>
+
+        <div class="col-4">
+            <h3 class="text-center">Blogs you have Liked:</h3>
+            <ul>
+                <% for(let blog of blogs){%>
+                    <% for(let like of blog.likes){ %>
+                        <% if(like._id.equals(currentUser._id)){ %>
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class=""">
+                                        <img src=" <%=blog.logo[0].url %>" class="img-fluid " alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h3 class="card-title">
+                                                <a href="/blogs/<%= blog._id%>">
+                                                    <%= blog.title %>
+                                                </a>
+                                            </h3>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                                <%= blog.shortdescription %>
+                                            </h6>
+                                            <h6>Published by: <b>
+                                                    <%= blog.author.username %>
+                                                </b></h6>
+                                            <% if(blog.likes.length) {%>
+                                                <h6>Likes: <b>
+                                                        <%= blog.likes.length %>
+                                                    </b></h6>
+                                                <% } %>
+                                                    <% if(blog.likes.length) {%>
+                                                        <h6>Dislikes:
+                                                            <b>
+                                                                <%= blog.dislikes.length %>
+                                                            </b>
+                                                        </h6>
+                                                        <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% } %>
+
+            </ul>
+        </div>
+        <div class="col-4">
+            <h3 class="text-center">Blogs you have Commented on:</h3>
+            <ul>
+
+                <% for(let blog of blogs){%>
+                    <% for(let comment of blog.comments){ %>
+                        <% if(comment.author.equals(currentUser._id)){ %>
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class=""">
+                                        <img src=" <%=blog.logo[0].url %>" class="img-fluid " alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h3 class="card-title">
+                                                <a href="/blogs/<%= blog._id%>">
+                                                    <%= blog.title %>
+                                                </a>
+                                            </h3>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                                <%= blog.shortdescription %>
+                                            </h6>
+                                            <h6>Published by: <b>
+                                                    <%= blog.author.username %>
+                                                </b></h6>
+                                            <% if(blog.likes.length) {%>
+                                                <h6>Likes: <b>
+                                                        <%= blog.likes.length %>
+                                                    </b></h6>
+                                                <% } %>
+                                                    <% if(blog.likes.length) {%>
+                                                        <h6>Dislikes:
+                                                            <b>
+                                                                <%= blog.dislikes.length %>
+                                                            </b>
+                                                        </h6>
+                                                        <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    <% } %>
+
+            </ul>
+        </div>
+    </div>

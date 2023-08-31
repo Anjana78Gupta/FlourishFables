@@ -1,0 +1,44 @@
+<% layout('/layouts/boilerplate') %>
+    <h1 class="text-center">All Blogs:</h1>
+    <ul>
+        <% for(let blog of blogs){%>
+            <div class="card mb-3 text-center">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="<%= blog.logo[0].url  %>" class="img-fluid " alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <%= blog.title %>
+                            </h3>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                <%= blog.shortdescription %>
+                            </h6>
+                            <h6>Published by: <b>
+                                    <%= blog.author.username %>
+                                </b></h6>
+                            <% if(blog.likes.length) {%>
+                                <h6>Likes: <b>
+                                        <%= blog.likes.length %>
+                                    </b></h6>
+                                <% } %>
+                                    <% if(blog.dislikes.length) {%>
+                                        <h6>Dislikes:
+                                            <b>
+                                                <%= blog.dislikes.length %>
+                                            </b>
+                                        </h6>
+                                        <% } %>
+                        </div>
+                        <div>
+                            <form action="/blogs/<%= blog._id%>">
+                                <button class="btn btn-light" type="">Show BLOG</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+    </ul>
