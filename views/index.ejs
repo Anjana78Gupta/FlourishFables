@@ -1,4 +1,9 @@
 <% layout('/layouts/boilerplate') %>
+    <style>
+        body {
+            background-color: #ECF2FF;
+        }
+    </style>
     <h1 class="text-center">Welcome to FlourishFables</h1>
     <div id="carouselExampleFade" class="carousel slide carousel-fade mb-3">
         <div class="carousel-inner">
@@ -25,38 +30,44 @@
         </button>
     </div>
     <div class="row mb-3">
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://res.cloudinary.com/dxldqvmej/image/upload/v1693480150/FlourishFables/home8_i4b8jr.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body mt-5 mb-3">
+        <div class="col-md-4">
+            <div class="card h-100">
+
+                <a href="/blogs">
+                    <img src="https://res.cloudinary.com/dxldqvmej/image/upload/v1693480150/FlourishFables/home8_i4b8jr.jpg"
+                        class="card-img-top" alt="...">
+                </a>
+                <div class="card-body d-flex flex-column align-items-center">
+                    <br><br><br><br><br><br>
                     <h5 class="card-title text-center">Read BLOGS!</h5>
-                    <p class="card-text">Click on the button to read all blogs.</p>
-                    <a href="/blogs" class="btn btn-primary">BLOGS</a>
+                    <p class="card-text text-center">Click on the image to read all blogs.</p>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                <img src="https://res.cloudinary.com/dxldqvmej/image/upload/v1693479731/FlourishFables/home7_mwagek.webp"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <a href="/blogs/new">
+                    <img src="https://res.cloudinary.com/dxldqvmej/image/upload/v1693479731/FlourishFables/home7_mwagek.webp"
+                        class="card-img-top" alt="...">
+                </a>
+                <div class="card-body d-flex flex-column align-items-center">
                     <h5 class="card-title">ADD NEW BLOG!</h5>
-                    <p class="card-text">Share your thoughts, its a safe platform</p>
-                    <a href="/blogs/new" class="btn btn-primary">ADD</a>
+                    <p class="card-text">Click on the image to share your thoughts, it's a safe platform</p>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card" style="width:18rem">
-                <img src="https://res.cloudinary.com/dxldqvmej/image/upload/v1693479072/FlourishFables/login_wioehw.avif"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <a href="/login">
+                    <img src="https://res.cloudinary.com/dxldqvmej/image/upload/v1693479072/FlourishFables/login_wioehw.avif"
+                        class="card-img-top" alt="...">
+                </a>
+                <div class="card-body d-flex flex-column align-items-center">
                     <h5 class="card-title text-center">Login</h5>
-                    <p class="card-text">Login to access more features.</p>
-                    <a href="/login" class="btn btn-primary">Click Me!</a>
+                    <p class="card-text text-center">Click on the image to login and access more features.</p>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>

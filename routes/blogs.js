@@ -25,7 +25,7 @@ router.post('/', isLoggedIn, upload.array('logo'), validateBlog, catchAsync(asyn
     blog.logo = req.files.map(f => ({ url: f.path, filename: f.filename }));
     blog.author = req.user._id;
     await blog.save();
-    console.log(blog);
+    // console.log(blog);
     req.flash('success', 'Successfully made a new Blog!!');
     res.redirect(`/blogs/${blog._id}`);
 }));
@@ -44,24 +44,31 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('blogs/show', { blog });
 }));
 router.get('/:id/like', isLoggedIn, catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const blog = await Blog.findById(id);
-    if (blog.likes.includes(req.user._id)) {
-        req.flash('error', "You already have liked this post");
-        res.redirect(`/blogs/${blog._id}`);
-    }
-    else {
-        const blog = await Blog.findByIdAndUpdate(id, { $push: { likes: req.user._id } });
-        await blog.save();
-        if (blog.dislikes.includes(req.user._id)) {
-            const user = req.user._id;
-            const index = blog.dislikes.indexOf(user);
-
-            await blog.dislikes.splice(index, 1);
-            await blog.save();
+    try {
+        const { id } = req.params;
+        const blog = await Blog.findById(id);
+        if (blog.likes.includes(req.user._id)) {
+            req.flash('error', "You already have liked this post");
+            res.redirect(`/blogs/${blog._id}`);
         }
-        req.flash('success', 'Successfully LIKED!!');
-        res.redirect(`/blogs/${blog._id}`);
+        else {
+            const updatedblog = await Blog.findByIdAndUpdate(id, { $push: { likes: req.user._id } });
+            await updatedblog.save();
+            if (updatedblog.dislikes.includes(req.user._id)) {
+                const user = req.user._id;
+                const index = updatedblog.dislikes.indexOf(user);
+
+                await updatedblog.dislikes.splice(index, 1);
+                await updatedblog.save();
+            }
+            req.flash('success', 'Successfully LIKED!!');
+            res.redirect(`/blogs/${blog._id}`);
+        }
+    } catch (error) {
+        // console.error(error);
+        // Handle the error appropriately
+        req.flash('error', 'An error occurred');
+        res.redirect(`/blogs/${id}`);
     }
 
 }))
@@ -111,7 +118,7 @@ router.put('/:id', isLoggedIn, isAuthor, upload.array('logo'), validateBlog, cat
             await cloudinary.uploader.destroy(filename);
         }
         await blog.updateOne({ $pull: { logo: { filename: { $in: req.body.deleteImages } } } });
-        console.log(blog);
+        // console.log(blog);
     }
     req.flash('success', "Successfully updated the Blog!");
     res.redirect(`/blogs/${blog._id}`);

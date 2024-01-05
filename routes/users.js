@@ -47,14 +47,40 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/profile', isLoggedIn, catchAsync(async (req, res) => {
+    // const blogs = await Blog.find({}).populate({
+    //     path: 'comments',
+    //     populate: {
+    //         path: 'author'
+    //     }
+    // }).populate('author');
+    res.render('blogs/profile');
+}));
+router.get('/yrblogs', isLoggedIn, catchAsync(async (req, res) => {
     const blogs = await Blog.find({}).populate({
         path: 'comments',
         populate: {
             path: 'author'
         }
     }).populate('author');
-    res.render('blogs/profile', { blogs });
-
-}));
+    res.render('blogs/yrblogs', { blogs });
+}))
+router.get('/likedblogs', isLoggedIn, catchAsync(async (req, res) => {
+    const blogs = await Blog.find({}).populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
+    res.render('blogs/likedblogs', { blogs });
+}))
+router.get('/cmtblogs', isLoggedIn, catchAsync(async (req, res) => {
+    const blogs = await Blog.find({}).populate({
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
+    res.render('blogs/cmtblogs', { blogs });
+}))
 
 module.exports = router;
