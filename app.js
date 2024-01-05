@@ -129,7 +129,7 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = 'Something went WRONG!!!';
     res.status(statusCode).render('error', { err });
 })
-const PORT = process.env.ONPORT;
+const PORT = process.env.ONPORT||7000;
 app.listen(PORT, () => {
     console.log("listening on port!!");
 })
