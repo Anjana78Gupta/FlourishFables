@@ -24,7 +24,7 @@ const LocalStrategy = require('passport-local');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
-const dbUrl = process.env.DB_URL;
+const dbUrl = "mongodb+srv://anjana:OlZHGxne7Zv2x1sW@cluster0.npdb9mu.mongodb.net/?retryWrites=true&w=majority";
 const MongoDBStore = require("connect-mongo");
 
 
