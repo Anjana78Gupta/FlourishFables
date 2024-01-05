@@ -90,19 +90,9 @@ const fontSrcUrls = [];
 
 app.use(session(sessionConfig));
 app.use(flash());
-app.use(helmet());
 app.use(
-    helmet.contentSecurityPolicy({
-        directives: {
-            "default-src": ["'self'"],
-            "base-uri": ["'self'"],
-            "font-src": ["'self'", "https:", "data:"],
-            "frame-ancestors": ["'self'"],
-            "img-src": ["'self'", "data:", "https://res.cloudinary.com/dxldqvmej/", "https://res.cloudinary.com/dxldqvmej/image/upload/v1693478226/FlourishFables", "https://images.unsplash.com/", "https://bloggingwebsite-5rcw.onrender.com/"],
-            "script-src": ["'self'", "https://cdn.jsdelivr.net", ...scriptSrcUrls],
-            "script-src-attr": ["'none'"],
-            "style-src": ["'self'", "https:", "'unsafe-inline'", "https://cdn.jsdelivr.net", ...styleSrcUrls],
-        }
+    helmet({
+        contentSecurityPolicy: false,
     })
 );
 
