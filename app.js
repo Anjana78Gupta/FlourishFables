@@ -40,18 +40,8 @@ async function main() {
     console.log("Database Connected!!!! ");
 }
 
-const store = new MongoDBStore({
-    mongoUrl: dbUrl,
-    secret: 'thisshouldbeabettersecret',
-    touchAfter: 24 * 60 * 60
-});
-
-store.on("error", function (e) {
-    console.log("SESSION STORE ERROR", e)
-})
 
 const sessionConfig = {
-    store: MongoDBStore.create({ mongoUrl: dbUrl }),
     name: 'session',
     secret: 'thisshouldbeabettersecret',
     resave: false,
