@@ -90,11 +90,11 @@ const fontSrcUrls = [];
 
 app.use(session(sessionConfig));
 app.use(flash());
-app.use(
-    helmet({
-        contentSecurityPolicy: false,
-    })
-);
+// app.use(
+//     helmet({
+//         contentSecurityPolicy: false,
+//     })
+// );
 
 
 app.use(passport.initialize());
